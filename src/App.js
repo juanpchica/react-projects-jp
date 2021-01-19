@@ -6,6 +6,9 @@ import Advanced from "./pages/advanced";
 import Error from "./pages/Error";
 import Navbar from "./pages/Navbar";
 
+//CSS Styles
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const App = () => {
   return (
     <Router>
