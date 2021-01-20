@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Simple from "./pages/simple";
 import Advanced from "./pages/advanced";
+import BirthdayReminder from "./pages/simple/BirthdayReminder";
 import Error from "./pages/Error";
 import Navbar from "./pages/Navbar";
 
@@ -19,6 +20,9 @@ const App = () => {
         </Route>
         <Route path="/advanced">
           <Advanced />
+        </Route>
+        <Route path="/birthdayReminder">
+          <BirthdayReminder />
         </Route>
         <Route path="*">
           <Error />
