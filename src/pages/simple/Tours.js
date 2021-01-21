@@ -6,31 +6,55 @@ const Tours = () => {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const getData = async () => {
-    const response = await fetch(url);
-    const tours = await response.json();
-    setTours(tours);
-    setLoading(false);
+  const fetchTours = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(url);
+      const tours = await response.json();
+      setLoading(false);
+      setTours(tours);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  const removeTour = (id) => {
+    const newTours = tours.filter((tour) => tour.id !== id);
+    setTours(newTours);
   };
 
   useEffect(() => {
-    getData();
+    fetchTours();
   }, []);
 
   if (loading) {
     return <Loading />;
   }
 
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className="title">
+          <h2>no tours left</h2>
+          <button className="btn" onClick={() => fetchTours()}>
+            refresh
+          </button>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main>
       {tours.map((tour) => {
-        return <Tour key={tour.id} {...tour} />;
+        return <Tour key={tour.id} {...tour} removeTour={removeTour} />;
       })}
     </main>
   );
 };
 
-const Tour = ({ name, info, image, price }) => {
+const Tour = ({ id, image, info, name, price, removeTour }) => {
   const [readMore, setReadMore] = useState(false);
   return (
     <article className="single-tour">
@@ -46,7 +70,9 @@ const Tour = ({ name, info, image, price }) => {
             {readMore ? "show less" : "  read more"}
           </button>
         </p>
-        <button className="delete-btn">not interested</button>
+        <button className="delete-btn" onClick={() => removeTour(id)}>
+          not interested
+        </button>
       </footer>
     </article>
   );
