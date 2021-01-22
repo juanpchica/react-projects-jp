@@ -40,7 +40,6 @@ const reviews = [
 ];
 
 const Reviews = () => {
-  const [user, setUser] = useState({});
   const [index, setIndex] = useState(0);
   const { id, name, job, image, text } = reviews[index];
   const checkIndex = (number) => {
@@ -54,13 +53,32 @@ const Reviews = () => {
   };
   const nextElement = () => setIndex(checkIndex(index + 1));
   const prevElement = () => setIndex(checkIndex(index - 1));
+  const random = () => {
+    console.log(Math.random());
+    let randomNumber = Math.floor(Math.random() * reviews.length);
+    if (randomNumber === index) {
+      randomNumber = index + 1;
+    }
+    setIndex(checkIndex(randomNumber));
+  };
 
   return (
     <section className="container">
-      <div>
+      <div
+        style={{
+          width: "500px",
+          margin: "0 auto",
+          textAlign: "center",
+          padding: "50px",
+        }}
+      >
         <h2>{name}</h2>
         <h4>{job}</h4>
-        <img src={image} alt={name} />
+        <img
+          src={image}
+          alt={name}
+          style={{ width: "250px", height: "250px", borderRadius: "50%" }}
+        />
         <p>{text}</p>
       </div>
       <button type="button" className="btn" onClick={nextElement}>
@@ -68,6 +86,9 @@ const Reviews = () => {
       </button>
       <button type="button" className="btn" onClick={prevElement}>
         Back
+      </button>
+      <button type="button" className="btn" onClick={random}>
+        Random
       </button>
     </section>
   );
