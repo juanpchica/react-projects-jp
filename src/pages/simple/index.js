@@ -10,6 +10,9 @@ const index = () => {
         <li className="list-group-item">
           <Link to="/tours">Tours</Link>
         </li>
+        <li className="list-group-item">
+          <Link to="/reviews">Reviews</Link>
+        </li>
       </ul>
     </section>
   );

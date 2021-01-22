@@ -5,6 +5,7 @@ import Simple from "./pages/simple";
 import Advanced from "./pages/advanced";
 import BirthdayReminder from "./pages/simple/BirthdayReminder";
 import Tours from "./pages/simple/Tours";
+import Reviews from "./pages/simple/Reviews";
 import Error from "./pages/Error";
 import Navbar from "./pages/Navbar";
 
@@ -27,6 +28,9 @@ const App = () => {
         </Route>
         <Route path="/tours">
           <Tours />
+        </Route>
+        <Route path="/reviews">
+          <Reviews />
         </Route>
         <Route path="*">
           <Error />
