@@ -40,8 +40,14 @@ const AccordionContext = React.createContext();
 
 const Accordion = () => {
   const [questions, setQuestions] = useState(data);
+  const removeItem = (id) => {
+    setQuestions((questions) => {
+      const newQuestions = questions.filter((question) => question.id !== id);
+      return newQuestions;
+    });
+  };
   return (
-    <AccordionContext.Provider value={questions}>
+    <AccordionContext.Provider value={{ questions, removeItem }}>
       <Container>
         <Row>
           <Col xs lg="4">
@@ -57,7 +63,8 @@ const Accordion = () => {
 };
 
 const AccordionList = () => {
-  const questions = useContext(AccordionContext);
+  const context = useContext(AccordionContext);
+  const questions = context.questions;
   return (
     <section>
       <ul className="accordion">
@@ -69,11 +76,16 @@ const AccordionList = () => {
   );
 };
 
-const Question = ({ title, info }) => {
+const Question = ({ id, title, info }) => {
   const [showElement, setShowElement] = useState(false);
+  const context = useContext(AccordionContext);
+  const removeItem = context.removeItem;
+  console.log(context);
   return (
     <li>
-      <Button variant="danger">Remove Item</Button>
+      <Button variant="danger" onClick={() => removeItem(id)}>
+        Remove Item
+      </Button>
       <h2>
         {title}{" "}
         <Button onClick={() => setShowElement(!showElement)}>
