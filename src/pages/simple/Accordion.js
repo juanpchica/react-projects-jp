@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 const data = [
   {
@@ -38,6 +39,7 @@ const data = [
 
 const Accordion = () => {
   const [questions, setQuestions] = useState(data);
+
   return (
     <Container>
       <Row>
@@ -66,10 +68,16 @@ const AccordionList = (props) => {
 };
 
 const Question = ({ id, title, info }) => {
+  const [showElement, setShowElement] = useState(false);
   return (
     <li>
-      <h2>{title}</h2>
-      <p>{info}</p>
+      <h2>
+        {title}{" "}
+        <Button onClick={() => setShowElement(!showElement)}>
+          {showElement ? "-" : "+"}
+        </Button>
+      </h2>
+      {showElement && <p>{info}</p>}
     </li>
   );
 };
