@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -36,26 +36,28 @@ const data = [
       "Locavore franzen fashion axe live-edge neutra irony synth af tilde shabby chic man braid chillwave waistcoat copper mug messenger bag. Banjo snackwave blog, microdosing thundercats migas vaporware viral lo-fi seitan ",
   },
 ];
+const AccordionContext = React.createContext();
 
 const Accordion = () => {
   const [questions, setQuestions] = useState(data);
-
   return (
-    <Container>
-      <Row>
-        <Col xs lg="4">
-          <h2>Accordion Example application</h2>
-        </Col>
-        <Col xs lg="8">
-          <AccordionList questions={questions} />
-        </Col>
-      </Row>
-    </Container>
+    <AccordionContext.Provider value={questions}>
+      <Container>
+        <Row>
+          <Col xs lg="4">
+            <h2>Accordion Example application</h2>
+          </Col>
+          <Col xs lg="8">
+            <AccordionList />
+          </Col>
+        </Row>
+      </Container>
+    </AccordionContext.Provider>
   );
 };
 
-const AccordionList = (props) => {
-  const questions = props.questions;
+const AccordionList = () => {
+  const questions = useContext(AccordionContext);
   return (
     <section>
       <ul className="accordion">
@@ -67,10 +69,11 @@ const AccordionList = (props) => {
   );
 };
 
-const Question = ({ id, title, info }) => {
+const Question = ({ title, info }) => {
   const [showElement, setShowElement] = useState(false);
   return (
     <li>
+      <Button variant="danger">Remove Item</Button>
       <h2>
         {title}{" "}
         <Button onClick={() => setShowElement(!showElement)}>
