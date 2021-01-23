@@ -16,6 +16,9 @@ const index = () => {
         <li className="list-group-item">
           <Link to="/accordion">Accordion</Link>
         </li>
+        <li className="list-group-item">
+          <Link to="/menu">Menú</Link>
+        </li>
       </ul>
     </section>
   );

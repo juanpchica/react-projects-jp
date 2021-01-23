@@ -7,6 +7,7 @@ import BirthdayReminder from "./pages/simple/BirthdayReminder";
 import Tours from "./pages/simple/Tours";
 import Reviews from "./pages/simple/Reviews";
 import Accordion from "./pages/simple/Accordion";
+import Menu from "./pages/simple/Menu";
 import Error from "./pages/Error";
 import Navbar from "./pages/Navbar";
 
@@ -35,6 +36,9 @@ const App = () => {
         </Route>
         <Route path="/accordion">
           <Accordion />
+        </Route>
+        <Route path="/menu">
+          <Menu />
         </Route>
         <Route path="*">
           <Error />
