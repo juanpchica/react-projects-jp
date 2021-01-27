@@ -62,7 +62,7 @@ const menu = [
     title: "american classic",
     category: "lunch",
     price: 12.99,
-    img: ".images/item-8.jpeg",
+    img: "./images/item-8.jpeg",
     desc: `on it tumblr kickstarter thundercats migas everyday carry squid palo santo leggings. Food truck truffaut  `,
   },
   {
@@ -75,26 +75,54 @@ const menu = [
   },
 ];
 
+//Filter Categories
+const allcategories = ["all", ...new Set(menu.map((item) => item.category))];
+
 const Menu = () => {
   const [menuItems, setMenuItems] = useState(menu);
+  const [categories, setCategories] = useState(allcategories);
+  const filterMenu = (cat) => {
+    if (cat === "all") {
+      setMenuItems(menu);
+      return;
+    }
+    const newItemsMenu = menuItems.filter((item) => cat === item.category);
+    setMenuItems(newItemsMenu);
+  };
+
   return (
     <main>
       <h1>Our Menu</h1>
-      <Categories />
+      <Categories filterMenu={filterMenu} categories={categories} />
       <ListMenu items={menuItems} />
     </main>
   );
 };
 
-const Categories = () => {
-  return <React.Fragment>tes</React.Fragment>;
+const Categories = ({ categories, filterMenu }) => {
+  return (
+    <section>
+      {categories.map((cat, index) => {
+        return (
+          <button
+            key={index}
+            type="button"
+            className="btn"
+            onClick={() => filterMenu(cat)}
+          >
+            {cat}
+          </button>
+        );
+      })}
+    </section>
+  );
 };
 
 const ListMenu = ({ items }) => {
   return (
     <section className="content-menu">
       {items.map((item) => {
-        const { id, title, price, img, desc } = item;
+        const { id, title, price, desc } = item;
         return (
           <article key={id}>
             <h2>{title}</h2>
