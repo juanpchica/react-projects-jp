@@ -53,8 +53,17 @@ const Slider = () => {
     }
   }, [index]);
 
+  useEffect(() => {
+    let slider = setInterval(() => {
+      setIndex(index + 1);
+    }, 5000);
+    return () => {
+      clearInterval(slider);
+    };
+  }, [index]);
+
   return (
-    <section>
+    <section className="container-slider">
       <ul className="slider">
         {people.map((person, personIndex) => {
           const { image, name, title, quote } = person;

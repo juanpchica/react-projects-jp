@@ -59,7 +59,7 @@ section {
   opacity: 1;
 }
 
-button.btn {
+.container-slider button.btn {
   background: blue;
   color: white;
   position: absolute;
@@ -68,7 +68,7 @@ button.btn {
   transform: translateY(-50%);
   z-index: 100;
 }
-button.btn-next {
+.container-slider button.btn-next {
   right: 0;
   left: auto !important;
 }
