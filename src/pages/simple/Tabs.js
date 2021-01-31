@@ -22,23 +22,42 @@ const Tabs = () => {
   if (isLoading) {
     return <section> Loading Content... </section>;
   }
-  const { title, dates, duties, company } = info[value];
+  const { title, dates, duties } = info[value];
   return (
-    <section>
-      <article>
-        <h1>{title}</h1>
-        <h3>{dates}</h3>
+    <React.Fragment>
+      <nav>
         <ul>
-          {duties.map((dutie, i) => {
+          {info.map((item, index) => {
             return (
-              <li key={i}>
-                <p>{dutie}</p>
+              <li key={item.id}>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setValue(index)}
+                >
+                  {item.company}
+                </button>
               </li>
             );
           })}
         </ul>
-      </article>
-    </section>
+      </nav>
+      <section>
+        <article>
+          <h1>{title}</h1>
+          <h3>{dates}</h3>
+          <ul>
+            {duties.map((dutie, i) => {
+              return (
+                <li key={i}>
+                  <p>{dutie}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </article>
+      </section>
+    </React.Fragment>
   );
 };
 
