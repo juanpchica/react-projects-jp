@@ -8,6 +8,7 @@ import Tours from "./pages/simple/Tours";
 import Reviews from "./pages/simple/Reviews";
 import Accordion from "./pages/simple/Accordion";
 import Menu from "./pages/simple/Menu";
+import Tabs from "./pages/simple/Tabs";
 import Error from "./pages/Error";
 import Navbar from "./pages/Navbar";
 
@@ -39,6 +40,9 @@ const App = () => {
         </Route>
         <Route path="/menu">
           <Menu />
+        </Route>
+        <Route path="/tabs">
+          <Tabs />
         </Route>
         <Route path="*">
           <Error />
