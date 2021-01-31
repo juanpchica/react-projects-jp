@@ -9,6 +9,7 @@ import Reviews from "./pages/simple/Reviews";
 import Accordion from "./pages/simple/Accordion";
 import Menu from "./pages/simple/Menu";
 import Tabs from "./pages/simple/Tabs";
+import Slider from "./pages/simple/Slider";
 import Error from "./pages/Error";
 import Navbar from "./pages/Navbar";
 
@@ -43,6 +44,9 @@ const App = () => {
         </Route>
         <Route path="/tabs">
           <Tabs />
+        </Route>
+        <Route path="/slider">
+          <Slider />
         </Route>
         <Route path="*">
           <Error />
