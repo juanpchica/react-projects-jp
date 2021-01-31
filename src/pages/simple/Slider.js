@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../pages/simple/Slider.css";
 const data = [
   {
@@ -41,13 +41,36 @@ const data = [
 
 const Slider = () => {
   const [people, setPeople] = useState(data);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const lastItem = people.length - 1;
+    if (index > lastItem) {
+      setIndex(0);
+    }
+    if (index < 0) {
+      setIndex(lastItem);
+    }
+  }, [index]);
+
   return (
     <section>
       <ul className="slider">
-        {people.map((person, index) => {
+        {people.map((person, personIndex) => {
           const { image, name, title, quote } = person;
+          let position = "slide-right";
+          if (personIndex === index) {
+            position = "slide-active";
+          }
+          if (
+            personIndex === index - 1 ||
+            (index === 0 && personIndex === people.length - 1)
+          ) {
+            position = "slide-left";
+          }
+
           return (
-            <li key={index} className="slide">
+            <li key={personIndex} className={"slide " + position}>
               <img src={image} alt={name} />
               <h2>{name}</h2>
               <span className="title">{title}</span>
@@ -56,6 +79,12 @@ const Slider = () => {
           );
         })}
       </ul>
+      <button className="btn btn-prev" onClick={() => setIndex(index - 1)}>
+        Prev
+      </button>
+      <button className="btn btn-next" onClick={() => setIndex(index + 1)}>
+        Next
+      </button>
     </section>
   );
 };
