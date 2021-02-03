@@ -15,7 +15,21 @@ I just told you! You've killed me! Fry! Quit doing the right thing, you jerk! Mi
 
 const Loremp = () => {
   const [amount, setAmount] = useState(0);
-  const [text, useText] = useState([]);
+  const [text, setText] = useState([]);
+
+  const addParagraph = () => {
+    if (amount === 0) {
+      alert("Please add a number different to zero");
+    }
+    if (amount <= 0) {
+      amount = 1;
+    }
+    if (amount > 8) {
+      amount = 8;
+    }
+
+    setText(data.slice(0, amount));
+  };
 
   return (
     <React.Fragment>
@@ -26,7 +40,9 @@ const Loremp = () => {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
-        <button type="button">Generate a new Paragraph</button>
+        <button type="button" onClick={() => addParagraph()}>
+          Generate a new Paragraph
+        </button>
       </section>
       <section>
         {text.map((t, i) => {
