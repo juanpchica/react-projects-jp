@@ -11,6 +11,7 @@ import Menu from "./pages/simple/Menu";
 import Tabs from "./pages/simple/Tabs";
 import Slider from "./pages/simple/Slider";
 import Loremp from "./pages/simple/Loremp";
+import ColorGenerator from "./pages/simple/ColorGenerator";
 import Error from "./pages/Error";
 import Navbar from "./pages/Navbar";
 
@@ -51,6 +52,9 @@ const App = () => {
         </Route>
         <Route path="/loremp">
           <Loremp />
+        </Route>
+        <Route path="/ColorGenerator">
+          <ColorGenerator />
         </Route>
         <Route path="*">
           <Error />
