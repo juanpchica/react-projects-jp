@@ -32,7 +32,7 @@ const index = () => {
           <Link to="/ColorGenerator">Color Generator</Link>
         </li>
         <li className="list-group-item">
-          <Link to="/Grocery Bud">Grocery Bud</Link>
+          <Link to="/GroceryBud">Grocery Bud</Link>
         </li>
       </ul>
     </section>
