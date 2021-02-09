@@ -60,6 +60,9 @@ const App = () => {
         <Route path="/GroceryBud">
           <GroceryBud />
         </Route>
+        <Route path="/Navbar">
+          <Navbar />
+        </Route>
         <Route path="*">
           <Error />
         </Route>
