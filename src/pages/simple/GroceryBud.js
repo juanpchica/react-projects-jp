@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const GroceryBud = () => {
   const [name, setName] = useState("");
@@ -24,7 +24,11 @@ const GroceryBud = () => {
 
   const clearItems = function () {
     setList([]);
-    setAlert({ show: true, msg: "All items removed", type: "success" });
+    showAlert(true, "All items removed", "success");
+  };
+
+  const showAlert = (show = false, msg = "", type = "") => {
+    setAlert(show, msg, type);
   };
 
   const removeItem = (id) => {
@@ -32,12 +36,13 @@ const GroceryBud = () => {
       const newList = list.filter((item) => item.id != id);
       return newList;
     });
+    showAlert(true, "Item removed", "danger");
   };
 
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        {alert.show && <Alert action={alert} />}
+        {alert.show && <Alert action={alert} removeAlert={showAlert} />}
         <input
           type="text"
           className="form-control"
@@ -67,7 +72,16 @@ const GroceryBud = () => {
 
 const Alert = (props) => {
   const { show, msg, type } = props.action;
-  console.log(props);
+  const removeAlert = props.removeAlert;
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      removeAlert();
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div className={"alert alert-" + type} role="alert">
       {msg}
