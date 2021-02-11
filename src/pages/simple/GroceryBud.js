@@ -27,6 +27,13 @@ const GroceryBud = () => {
     setAlert({ show: true, msg: "All items removed", type: "success" });
   };
 
+  const removeItem = (id) => {
+    setList((list) => {
+      const newList = list.filter((item) => item.id != id);
+      return newList;
+    });
+  };
+
   return (
     <section>
       <form onSubmit={handleSubmit}>
@@ -42,11 +49,18 @@ const GroceryBud = () => {
           {isEditing ? "Update" : "Submit"}
         </button>
       </form>
-
-      <List items={list} />
-      <button type="button" className="btn btn-default" onClick={clearItems}>
-        Clear all
-      </button>
+      {list.length > 0 && (
+        <div className="grocery-container">
+          <List items={list} removeItem={removeItem} />
+          <button
+            type="button"
+            className="btn btn-default"
+            onClick={clearItems}
+          >
+            Clear all
+          </button>
+        </div>
+      )}
     </section>
   );
 };
@@ -61,7 +75,7 @@ const Alert = (props) => {
   );
 };
 
-const List = ({ items }) => {
+const List = ({ items, removeItem }) => {
   return (
     <ul className="list-group">
       {items.map((item) => {
@@ -71,7 +85,13 @@ const List = ({ items }) => {
             <button type="button" className="btn btn-success">
               Edit
             </button>
-            <button type="button" className="btn btn-danger">
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => {
+                removeItem(item.id);
+              }}
+            >
               Delete
             </button>
           </li>
