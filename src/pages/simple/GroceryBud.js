@@ -9,6 +9,11 @@ const GroceryBud = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name) {
+      setAlert({
+        show: true,
+        msg: "Please fill out all fields",
+        type: "danger",
+      });
     } else if (name && isEditing) {
     } else {
       const newItem = { id: new Date().getTime().toString(), name: name };
@@ -17,10 +22,15 @@ const GroceryBud = () => {
     }
   };
 
+  const clearItems = function () {
+    setList([]);
+    setAlert({ show: true, msg: "All items removed", type: "success" });
+  };
+
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        {alert.show && <Alert />}
+        {alert.show && <Alert action={alert} />}
         <input
           type="text"
           className="form-control"
@@ -33,22 +43,39 @@ const GroceryBud = () => {
         </button>
       </form>
 
-      <List list={list} />
+      <List items={list} />
+      <button type="button" className="btn btn-default" onClick={clearItems}>
+        Clear all
+      </button>
     </section>
   );
 };
 
-const Alert = () => {
-  return <section>alert</section>;
+const Alert = (props) => {
+  const { show, msg, type } = props.action;
+  console.log(props);
+  return (
+    <div className={"alert alert-" + type} role="alert">
+      {msg}
+    </div>
+  );
 };
 
-const List = (props) => {
-  const list = props.list;
-
+const List = ({ items }) => {
   return (
-    <ul>
-      {list.map((item) => {
-        return <li key={item.id}>{item.name}</li>;
+    <ul className="list-group">
+      {items.map((item) => {
+        return (
+          <li className="list-group-item" key={item.id}>
+            {item.name}
+            <button type="button" className="btn btn-success">
+              Edit
+            </button>
+            <button type="button" className="btn btn-danger">
+              Delete
+            </button>
+          </li>
+        );
       })}
     </ul>
   );
