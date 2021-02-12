@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { FaBehance, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+import "../../pages/simple/navbar.css";
 const links = [
   {
     id: 1,
@@ -59,13 +60,13 @@ const NavbarIn = () => {
     <nav>
       <div className="nav-center">
         <div className="nav-header">
-          <img src={logo} className="logo" alt="logo" />
-          <button className="nav-toggle" onClick={toggleLinks}>
+          <img src="" className="logo" alt="logo" />
+          <button className="nav-toggle">
             <FaBars />
           </button>
         </div>
         <div className="links-container">
-          <ul className="links" ref={linksRef}>
+          <ul className="links">
             {links.map((link) => {
               const { id, url, text } = link;
               return (
