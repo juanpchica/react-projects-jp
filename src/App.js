@@ -13,6 +13,7 @@ import Slider from "./pages/simple/Slider";
 import Loremp from "./pages/simple/Loremp";
 import GroceryBud from "./pages/simple/GroceryBud";
 import ColorGenerator from "./pages/simple/ColorGenerator";
+import NavbarIn from "./pages/simple/NavbarIn";
 import Error from "./pages/Error";
 import Navbar from "./pages/Navbar";
 
@@ -61,7 +62,7 @@ const App = () => {
           <GroceryBud />
         </Route>
         <Route path="/Navbar">
-          <Navbar />
+          <NavbarIn />
         </Route>
         <Route path="*">
           <Error />
