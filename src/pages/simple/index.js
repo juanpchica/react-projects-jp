@@ -37,6 +37,9 @@ const index = () => {
         <li className="list-group-item">
           <Link to="/Navbar">Navbar</Link>
         </li>
+        <li className="list-group-item">
+          <Link to="/modal">Modal</Link>
+        </li>
       </ul>
     </section>
   );

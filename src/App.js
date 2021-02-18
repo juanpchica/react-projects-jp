@@ -16,6 +16,7 @@ import ColorGenerator from "./pages/simple/ColorGenerator";
 import NavbarIn from "./pages/simple/NavbarIn";
 import Error from "./pages/Error";
 import Navbar from "./pages/Navbar";
+import Navbar from "./pages/Modal";
 
 //CSS Styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -63,6 +64,9 @@ const App = () => {
         </Route>
         <Route path="/Navbar">
           <NavbarIn />
+        </Route>
+        <Route path="/modal">
+          <Modal />
         </Route>
         <Route path="*">
           <Error />
