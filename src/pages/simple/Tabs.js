@@ -31,8 +31,8 @@ const Tabs = () => {
             return (
               <li key={item.id}>
                 <button
-                  type="button"
-                  className="btn"
+                  type='button'
+                  className='btn'
                   onClick={() => setValue(index)}
                 >
                   {item.company}
