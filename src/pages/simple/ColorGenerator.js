@@ -19,22 +19,22 @@ const ColorGenerator = () => {
   };
   return (
     <>
-      <section className="container">
+      <section className='container'>
         <h3>color generator</h3>
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
+            type='text'
             value={color}
             onChange={(e) => setColor(e.target.value)}
-            placeholder="#f15025"
+            placeholder='#f15025'
             className={`${error ? "error" : null}`}
           />
-          <button className="btn" type="submit">
+          <button className='btn' type='submit'>
             submit
           </button>
         </form>
       </section>
-      <section className="colors">
+      <section className='colors'>
         {list.map((color, index) => {
           return (
             <SingleColor
